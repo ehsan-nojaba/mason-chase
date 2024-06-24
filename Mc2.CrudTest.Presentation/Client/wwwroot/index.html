@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Mc2.CrudTest.Presentation</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Application CSS -->
     <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />
     <link href="Mc2.CrudTest.Presentation.Client.styles.css" rel="stylesheet" />
     <link href="manifest.json" rel="manifest" />
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <link href="lib/gijgo-combined-1.9.14/css/gijgo.min.css" rel="stylesheet" />
 </head>
 
 <body>
+
     <div id="app">
         <svg class="loading-progress">
             <circle r="40%" cx="50%" cy="50%" />
@@ -24,13 +29,68 @@
         <div class="loading-progress-text"></div>
     </div>
 
+
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
+
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
-</body>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/gijgo-combined-1.9.14/js/gijgo.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+<script>
+        function SuccessMessage(SuccessTxt) {
+            Swal.fire({
+                icon: 'success',
+                title: 'success message',
+                text: SuccessTxt,
+            });
+        }
 
+        function ErrorMessage(ErrorTxt) {
+            Swal.fire({
+                icon: 'error',
+                title: 'failed message',
+                text: ErrorTxt,
+            });
+        }
+
+        window.modalHelper = {
+            hideModal: function (modalId) {
+                var modalElement = document.getElementById(modalId);
+                if (modalElement) {
+                    var modal = bootstrap.Modal.getInstance(modalElement);
+                    if (modal) {
+                        modal.hide();
+                    }
+                }
+            },
+            showModal: function (modalId) {
+                var modalElement = document.getElementById(modalId);
+                if (modalElement) {
+                    var modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                    modal.show();
+                }
+            }
+        };
+
+        async function confirmDelete() {
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this customer!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, keep it'
+            });
+
+            return result.value;
+    }
+        
+    </script>
+</body>
 </html>

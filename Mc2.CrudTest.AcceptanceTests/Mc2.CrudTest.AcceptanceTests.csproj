@@ -12,11 +12,23 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+        <PackageReference Include="Moq" Version="4.20.70" />
+        <PackageReference Include="SpecFlow" Version="3.9.74" />
         <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
         <PackageReference Include="SpecFlow.NUnit" Version="3.9.22" />
         <PackageReference Include="nunit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
         <PackageReference Include="FluentAssertions" Version="6.2.0" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+        <PackageReference Include="xunit" Version="2.8.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Mc2.CrudTest.Domain\Mc2.CrudTest.DomainModel.csproj" />
+      <ProjectReference Include="..\Mc2.CrudTest.Presentation.BusinessServiceContract\Mc2.CrudTest.Presentation.BusinessServiceContract.csproj" />
+      <ProjectReference Include="..\Mc2.CrudTest.Presentation.Business\Mc2.CrudTest.Presentation.Business.csproj" />
+      <ProjectReference Include="..\Mc2.CrudTest.Presentation.DataAccessServiceContract\Mc2.CrudTest.Presentation.DataAccessServiceContract.csproj" />
+      <ProjectReference Include="..\Mc2.CrudTest.Presentation.DataAccess\Mc2.CrudTest.Presentation.DataAccess.csproj" />
     </ItemGroup>
 
 </Project>

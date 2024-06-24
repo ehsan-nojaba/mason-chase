@@ -10,9 +10,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
+    <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Mc2.CrudTest.BootStrap\Mc2.CrudTest.BootStrap.csproj" />
+    <ProjectReference Include="..\..\Mc2.CrudTest.Domain\Mc2.CrudTest.DomainModel.csproj" />
+    <ProjectReference Include="..\..\Mc2.CrudTest.Presentation.BusinessServiceContract\Mc2.CrudTest.Presentation.BusinessServiceContract.csproj" />
+    <ProjectReference Include="..\..\Mc2.CrudTest.Presentation.Business\Mc2.CrudTest.Presentation.Business.csproj" />
+    <ProjectReference Include="..\..\Mc2.CrudTest.Presentation.DataAccessServiceContract\Mc2.CrudTest.Presentation.DataAccessServiceContract.csproj" />
+    <ProjectReference Include="..\..\Mc2.CrudTest.Presentation.DataAccess\Mc2.CrudTest.Presentation.DataAccess.csproj" />
     <ProjectReference Include="..\Shared\Mc2.CrudTest.Presentation.Shared.csproj" />
   </ItemGroup>
 

@@ -1,9 +1,27 @@
-﻿Feature: Customer Manager
+﻿Feature: Customer Management
+  In order to manage customers
+  As an operator
+  I want to be able to create, update, and delete customers
 
-As a an operator I wish to be able to Create, Update, Delete customers and list all customers
-	
-@mytag
-Scenario: Operator creates, list, update and delete customers 
-	Given to be filled...
-	When to be filled...
-	Then to be filled...
+  Scenario: Operator creates a customer
+    Given a customer with the following details:
+      | FirstName | LastName | Email            | DateOfBirth | PhoneNumber    |
+      | John      | Doe      | john@example.com | 1990-01-01  | +989123456789  |
+    When the operator creates the customer
+    Then the customer should be created successfully
+
+  Scenario: Operator updates a customer
+    Given a customer with the following details:
+      | FirstName | LastName | Email            | DateOfBirth | PhoneNumber    |
+      | John      | Doe      | john@example.com | 1990-01-01  | +989123456789  |
+    When the operator updates the customer with new details:
+      | FirstName | LastName | Email               | DateOfBirth | PhoneNumber    |
+      | Johnny    | Doe      | johnny@example.com  | 1990-01-01  | +989123456789  |
+    Then the customer should be updated successfully
+
+  Scenario: Operator deletes a customer
+    Given a customer with the following details:
+      | FirstName | LastName | Email            | DateOfBirth | PhoneNumber    |
+      | John      | Doe      | john@example.com | 1990-01-01  | +989123456789  |
+    When the operator deletes the customer
+    Then the customer should be deleted successfully

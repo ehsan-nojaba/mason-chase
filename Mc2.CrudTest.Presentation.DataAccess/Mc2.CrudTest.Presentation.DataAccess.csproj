@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Mc2.CrudTest.Domain\Mc2.CrudTest.DomainModel.csproj" />
+    <ProjectReference Include="..\Mc2.CrudTest.Presentation.DataAccessServiceContract\Mc2.CrudTest.Presentation.DataAccessServiceContract.csproj" />
+    <ProjectReference Include="..\Mc2.CrudTest.Presentation.FrameWork\Mc2.CrudTest.Presentation.FrameWork.csproj" />
+  </ItemGroup>
+
+</Project>

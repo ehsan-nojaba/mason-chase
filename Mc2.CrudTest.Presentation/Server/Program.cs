@@ -1,4 +1,11 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Mc2.CrudTest.BootStrap; // Assuming your BootStrap namespace
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using Mc2.CrudTest.Presentation.Business;
+using Mc2.CrudTest.Presentation.BusinessServiceContract;
 
 namespace Mc2.CrudTest.Presentation
 {
@@ -9,13 +16,31 @@ namespace Mc2.CrudTest.Presentation
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddRazorPages();
+            ConfigureServices(builder.Services, builder.Configuration);
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
+            Configure(app);
+
+            app.Run();
+        }
+
+        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
+
+            // Connection to SQL
+            var connectionString = configuration["ConnectionString"];
+            BootStrap.bootstrap.WireUp(services, connectionString);
+
+            
+        }
+
+        private static void Configure(WebApplication app)
+        {
             if (app.Environment.IsDevelopment())
             {
                 app.UseWebAssemblyDebugging();
@@ -23,23 +48,17 @@ namespace Mc2.CrudTest.Presentation
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
-
             app.UseRouting();
-
 
             app.MapRazorPages();
             app.MapControllers();
             app.MapFallbackToFile("index.html");
-
-            app.Run();
         }
     }
 }
